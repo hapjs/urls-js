@@ -2,23 +2,34 @@
 轻量级url参数处理，兼容浏览器和Node.js环境
 
 ## 引用
+
+```js
 var urls = require('urls');
+```
 
+或
 
-## urls.parse()
+```html
+<script src="urls.min.js"></script>
+```
 
-解析 url参数和 hash参数
+## urls.parse() 解析
 
 假设当前页面 url 为 http://baidu.com?a=1&b=2#c=3
-```
+```js
 urls.parse().query; // ==> { a: '1', b: '2' }
 urls.parse().hash;  // ==> { c: '3' }
 ```
 
-## urls.stringify()
-
-把对象转为url字符串
+```js
+urls.parse('?a=3&b=4').query;                // ==> { a: '3', b: '4' }
+urls.parse('page/index.html?a=3&b=4').query; // ==> { a: '3', b: '4' }
+urls.parse('http://localhost/page/index.html?a=3&b=4').query; // ==> { a: '3', b: '4' }
 ```
+
+## urls.stringify() 拼接
+
+```js
 var url = {
     path: 'page/index.html',
     query: {
@@ -33,10 +44,9 @@ var url = {
 urls.stringify(url);  // ==> page/index.html?a=1&b=2#c
 ```
 
-## urls.merge()
+## urls.merge() 合并
 
-合并url参数
-```
+```js
 var url1 = 'page/index.html?a=1&b=2#c';
 var url2 = '?b=3';
 
